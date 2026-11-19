@@ -1,0 +1,3 @@
+# OPTIONAL, for downloading ONLY media you own or are permitted to download/edit.
+# YouTube may block this independent utility; it is not a licensed content API.
+yt-dlp>=2025.1
