@@ -1,0 +1,2 @@
+# Optional: real offline speech transcription; first execution downloads model weights.
+faster-whisper>=1.0,<3
