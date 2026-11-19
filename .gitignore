@@ -1,0 +1,41 @@
+# Personal credentials and environment config
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+*.key
+*.credentials.json
+credentials.json
+secrets.json
+cookies.txt
+
+# Local source media, renders, project metadata
+workspace/
+data/
+outputs/
+exports/
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.m4v
+*.srt
+
+# Python and OS transient files
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.py[cod]
+.DS_Store
+Thumbs.db
+
+# Editor / temp / log files
+.vscode/
+.idea/
+*.log
+*.tmp
