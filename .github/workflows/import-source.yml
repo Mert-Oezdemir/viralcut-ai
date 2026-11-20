@@ -1,0 +1,33 @@
+name: Import audited ViralCut source
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.source/READY'
+
+permissions:
+  contents: write
+
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Verify and extract approved source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f .source/READY
+          cat .source/source.part* | base64 --decode > /tmp/viralcut-source.tar.xz
+          echo '238b8744d4db8824f081efd29f118e07ca5e13f73d8324ccc79cc1739fef3d60  /tmp/viralcut-source.tar.xz' | sha256sum -c -
+          tar -xJf /tmp/viralcut-source.tar.xz --strip-components=1
+          rm -rf .source
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "feat: publish audited ViralCut AI v0.2 source"
+            git push origin HEAD:main
+          fi
